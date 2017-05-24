@@ -21,7 +21,7 @@ function bulletin_search_base( $mydirname , $queryarray , $andor , $limit , $off
 		$sql = "SELECT storyid,uid,title,published FROM ".$xoopsDB->prefix($mydirname."_stories")." WHERE published > 0 AND published <= ".time()." AND (expired = 0 OR expired >= ".time()." )";
 	}
 //ver3.0
-	$gperm =& BulletinGP::getInstance($mydirname) ;
+	$gperm = BulletinGP::getInstance($mydirname) ;
 	$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 	$sql .= " AND topicid IN (".implode(',',$can_read_topic_ids).")";
 
@@ -43,7 +43,7 @@ function bulletin_search_base( $mydirname , $queryarray , $andor , $limit , $off
 	$ret = array();
 	$i = 0;
 
-	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
+	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts = MyTextSanitizer::sGetInstance()) || $myts = MyTextSanitizer::getInstance();
 
 
  	while($myrow = $xoopsDB->fetchArray($result)){

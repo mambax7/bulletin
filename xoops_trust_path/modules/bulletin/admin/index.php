@@ -18,7 +18,7 @@ require_once dirname(dirname(__FILE__)).'/class/bulletin.php';
 require_once dirname(dirname(__FILE__)).'/class/bulletinTopic.php';
 
 // Sanitizer
-(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
+(method_exists('MyTextSanitizer', 'sGetInstance') and $myts = MyTextSanitizer::sGetInstance()) || $myts = MyTextSanitizer::getInstance();
 // Template
 $tpl = new XoopsTpl();
 // Determine the operation
@@ -301,7 +301,7 @@ case 'delTopic':
 		}else{
 			$move_topics = array_map( 'intval' , $_POST['topics'] ) ;
 		}
-		$gperm =& BulletinGP::getInstance($mydirname) ;
+		$gperm = BulletinGP::getInstance($mydirname) ;
 
 		array_push( $topic_arr, $BTopic );
 

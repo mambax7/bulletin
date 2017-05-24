@@ -18,7 +18,7 @@ function b_bulletin_recent_comments_show($options) {
 
 	$block = array();
 //ver3.0 can_read access
-	$gperm =& BulletinGP::getInstance($mydirname) ;
+	$gperm = BulletinGP::getInstance($mydirname) ;
 	$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 	if (empty($can_read_topic_ids)){
 		return false;
@@ -32,7 +32,7 @@ function b_bulletin_recent_comments_show($options) {
 	$criteria->setLimit(10);
 	$criteria->setSort('com_created');
 	$criteria->setOrder('DESC');
-	$comments =& $comment_handler->getObjects($criteria, true);
+	$comments = $comment_handler->getObjects($criteria, true);
 //ver3.0
 	$storyids = array();
 	foreach (array_keys($comments) as $i) {

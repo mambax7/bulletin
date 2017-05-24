@@ -39,7 +39,7 @@ function b_bulletin_category_new_show($options) {
 
 	$arr = array();
 //ver3.0 can_read access
-	$gperm =& BulletinGP::getInstance($mydirname) ;
+	$gperm = BulletinGP::getInstance($mydirname) ;
 	$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 	if (empty($can_read_topic_ids)){
 		return false;

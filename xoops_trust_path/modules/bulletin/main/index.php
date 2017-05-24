@@ -14,7 +14,7 @@ $op = isset($_GET['op']) ? $_GET['op'] : "" ;
 // By yoshis op=comments is d3forum comment
 if ($op == "comments" && !empty($xoopsModuleConfig['comment_dirname']) && !empty($xoopsModuleConfig['comment_forum_id']) ){
 //ver3.0 can_read access
-	$gperm =& BulletinGP::getInstance($mydirname) ;
+	$gperm = BulletinGP::getInstance($mydirname) ;
 	$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 	if (empty($can_read_topic_ids)){
 		die(_NOPERM);
@@ -135,7 +135,7 @@ if( !empty($caldate) && preg_match('/([0-9]{4})-([0-9]{2})-([0-9]{2})/', $caldat
 }
 
 $scount = count($articles);
-$gperm =& BulletinGP::getInstance($mydirname) ;
+$gperm = BulletinGP::getInstance($mydirname) ;
 
 // Loop of the article
 for ( $i = 0; $i < $scount; $i++ ) {

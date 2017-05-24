@@ -10,8 +10,8 @@ class relation {
 
 	function relation($mydirname='')
 	{
-		$this->db =& Database::getInstance();
-		(method_exists('MyTextSanitizer', 'sGetInstance') and $this->ts =& MyTextSanitizer::sGetInstance()) || $this->ts =& MyTextSanitizer::getInstance();
+		$this->db = Database::getInstance();
+		(method_exists('MyTextSanitizer', 'sGetInstance') and $this->ts = MyTextSanitizer::sGetInstance()) || $this->ts = MyTextSanitizer::getInstance();
 		$this->mydirname = $mydirname;
 		$this->relation_table = $this->db->prefix("{$mydirname}_relation");
 	}

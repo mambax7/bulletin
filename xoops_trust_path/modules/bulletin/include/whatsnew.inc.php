@@ -13,17 +13,17 @@ function '.$mydirname.'_new( $limit=0, $offset=0 )
 if ( ! function_exists('bulletin_whatsnew_base') ) {
 	function bulletin_whatsnew_base( $mydirname, $limit=0, $offset=0, $category_option='' )
 	{
-		$db =& Database::getInstance() ;
+		$db = Database::getInstance() ;
 		$categories = empty($category_option) ? 0 : array_map( 'intval' , explode( ',' , $category_option ) ) ;//(0=show all)
 
-		(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
+		(method_exists('MyTextSanitizer', 'sGetInstance') and $myts = MyTextSanitizer::sGetInstance()) || $myts = MyTextSanitizer::getInstance();
 
 		require_once dirname(dirname(__FILE__)).'/class/bulletingp.php' ;
 
 		$ret = array();
 
 //ver3.0 can_read access
-		$gperm =& BulletinGP::getInstance($mydirname) ;
+		$gperm = BulletinGP::getInstance($mydirname) ;
 		$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 		if (empty($can_read_topic_ids)){
 			return $ret;

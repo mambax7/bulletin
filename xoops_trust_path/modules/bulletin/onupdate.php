@@ -18,7 +18,7 @@ function bulletin_onupdate_base( $module, $prev_version , $mydirname )
 		if( ! is_array( $msgs ) ) $msgs = array() ;
 	}
 
-	$db =& Database::getInstance() ;
+	$db = Database::getInstance() ;
 	$mid = $module->getVar('mid') ;
 
 

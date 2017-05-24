@@ -17,7 +17,7 @@ class Bulletin extends XoopsObject{
 	// Constructor
 	function Bulletin( $mydirname , $id=null )
 	{
-		$this->db =& Database::getInstance();
+		$this->db = Database::getInstance();
 		$this->mydirname = $mydirname ;
 		$this->topic_table = $this->db->prefix( "{$mydirname}_topics" ) ;
 		$this->table = $this->db->prefix( "{$mydirname}_stories" ) ;
@@ -144,7 +144,7 @@ class Bulletin extends XoopsObject{
 	// Basic Processing
 	public static function &getAll( $mydirname , $criteria=array() , $asobject=true, $orderby="published DESC", $limit=0, $start=0)
 	{
-		$db =& Database::getInstance();
+		$db = Database::getInstance();
 		$ret = array();
 		$where_query = "";
 		if ( is_array($criteria) && count($criteria) > 0 ) {
@@ -176,7 +176,7 @@ class Bulletin extends XoopsObject{
 	// Basic Processing
 	public static function &countAll( $mydirname , $criteria=array())
 	{
-		$db =& Database::getInstance();
+		$db = Database::getInstance();
 		$where_query = "";
 		if ( is_array($criteria) && count($criteria) > 0 ) {
 			$where_query = " WHERE";
@@ -199,7 +199,7 @@ class Bulletin extends XoopsObject{
 	// To gets a list of published articles
 	public static function getAllPublished( $mydirname , $limit4sql=0, $start4sql=0, $topic4sql=0, $ihome=1, $asobject=true, $topic_recursive=false, $gpermited=false)
 	{
-		$gperm =& BulletinGP::getInstance($mydirname) ;
+		$gperm = BulletinGP::getInstance($mydirname) ;
 
 		$topic4sql = intval($topic4sql);
 		$limit4sql = intval($limit4sql);
@@ -247,7 +247,7 @@ class Bulletin extends XoopsObject{
 	// To get a list of articles for the Archives
 	public static function getArchives( $mydirname , $monstart4sql=null, $monend4sql=null, $limit4sql=0, $start4sql=0, $asobject=true, $gpermited=false)
 	{
-		$gperm =& BulletinGP::getInstance($mydirname) ;
+		$gperm = BulletinGP::getInstance($mydirname) ;
 
 		$monstart4sql = intval($monstart4sql);
 		$monend4sql   = intval($monend4sql);
@@ -268,7 +268,7 @@ class Bulletin extends XoopsObject{
 		$criteria[] = "(expired = 0 OR expired > ".time().")";
 //ver3.0
 		if( $gpermited ){
-			$gperm =& BulletinGP::getInstance($mydirname) ;
+			$gperm = BulletinGP::getInstance($mydirname) ;
 			$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 			$criteria[] = "topicid IN (".implode(',',$can_read_topic_ids).")";
 		}
@@ -328,7 +328,7 @@ class Bulletin extends XoopsObject{
 	// To get a list of articles based on the date
 	public static function getAllToday( $mydirname , $limit4sql=0, $start4sql=0, $caldate, $asobject=true, $gpermited=false)
 	{
-		$gperm =& BulletinGP::getInstance($mydirname) ;
+		$gperm = BulletinGP::getInstance($mydirname) ;
 
 		$limit4sql    = intval($limit4sql);
 		$start4sql    = intval($start4sql);
@@ -352,7 +352,7 @@ class Bulletin extends XoopsObject{
 			}
 
 			if( $gpermited ){
-				$gperm =& BulletinGP::getInstance($mydirname) ;
+				$gperm = BulletinGP::getInstance($mydirname) ;
 				$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 				$criteria[] = "topicid IN (".implode(',',$can_read_topic_ids).")";
 			}
@@ -479,8 +479,8 @@ class Bulletin extends XoopsObject{
 			return false;
 		}
 
-		$db =& Database::getInstance();
-		$gperm =& BulletinGP::getInstance($mydirname) ;
+		$db = Database::getInstance();
+		$gperm = BulletinGP::getInstance($mydirname) ;
 //ver2.0$sql = "SELECT COUNT(*) FROM ".$db->prefix($mydirname.'_stories')." WHERE type > 0 AND published > 0 AND published <= ".time()." AND (expired = 0 OR expired > ".time().") AND storyid =".$storyid;
 //ver3.0
 		$sql = "SELECT COUNT(*) FROM ".$db->prefix($mydirname.'_stories');
@@ -502,7 +502,7 @@ class Bulletin extends XoopsObject{
 	/*
 	function getTreeCategories($topic_pid = 0, $so = 0 ,$cat_tree = array()){
 
-		$db =& Database::getInstance();
+		$db = Database::getInstance();
 
 		$result = ( "SELECT `topic_id`, `topic_title` FROM ".$this->topic_table." WHERE `topic_pid` = '$topic_pid'" );
 		$result = $db->query($result);
@@ -522,7 +522,7 @@ class Bulletin extends XoopsObject{
 	// class method
 	public static function makeCategoryArrayForSelect( $mydirname , $pad_string = '--' )
 	{
-		(method_exists('MyTextSanitizer', 'sGetInstance') and $ts =& MyTextSanitizer::sGetInstance()) || $ts =& MyTextSanitizer::getInstance();
+		(method_exists('MyTextSanitizer', 'sGetInstance') and $ts = MyTextSanitizer::sGetInstance()) || $ts = MyTextSanitizer::getInstance();
 		$cat_tree = Bulletin::getTreeCategories();
 		$ret = array();
 		foreach($cat_tree as $cat){
@@ -536,7 +536,7 @@ class Bulletin extends XoopsObject{
 	// Count the number of articles published
 	public static function countPublished( $mydirname , $topicid=0,$topic_recursive=false, $gpermited=false)
 	{
-		$gperm =& BulletinGP::getInstance($mydirname) ;
+		$gperm = BulletinGP::getInstance($mydirname) ;
 
 		$criteria = array();
 		if ($gpermited && !$gperm->group_perm(2)){
@@ -614,7 +614,7 @@ class Bulletin extends XoopsObject{
 	// Count the number of articles of the day
 	public static function countPublishedByDate( $mydirname , $caldate, $gpermited=false)
 	{
-		$gperm =& BulletinGP::getInstance($mydirname) ;
+		$gperm = BulletinGP::getInstance($mydirname) ;
 
 		if( preg_match('/([0-9]{4})-([0-9]{2})-([0-9]{2})/', $caldate, $datearr) ){
 			$year  = $datearr[1];
@@ -663,8 +663,8 @@ class Bulletin extends XoopsObject{
 	// Returns an array with the time stamp of posts
 	public static function getPublishedDays( $mydirname , $limit=0 , $start=0 , $gpermited=false )
 	{
-		$db =& Database::getInstance();
-		$gperm =& BulletinGP::getInstance($mydirname) ;
+		$db = Database::getInstance();
+		$gperm = BulletinGP::getInstance($mydirname) ;
 
 		$sql = "SELECT published FROM ".$db->prefix($mydirname.'_stories');
 //ver2.0$sql .= " WHERE type > 0 AND published>0 AND published<=".time()." AND expired <= ".time();

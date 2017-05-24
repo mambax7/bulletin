@@ -6,7 +6,7 @@ class BulletinGP{
 	var $gpermission;
 
 	function BulletinGP($mydirname){
-		$this->db =& Database::getInstance();
+		$this->db = Database::getInstance();
 		$this->table_topic_access = $this->db->prefix($mydirname."_topic_access") ;
 
 		if ( $this->mydirname != $mydirname ) {

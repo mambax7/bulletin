@@ -4,7 +4,7 @@ function b_bulletin_bigstory_show($options) {
 
 	global $xoopsDB;
 
-	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
+	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts = MyTextSanitizer::sGetInstance()) || $myts = MyTextSanitizer::getInstance();
 
 	$mydirname = empty( $options[0] ) ? basename( dirname( dirname( __FILE__ ) ) ) : $options[0] ;
 	if( preg_match( '/[^0-9a-zA-Z_-]/' , $mydirname ) ) die( 'Invalid mydirname' ) ;
@@ -18,7 +18,7 @@ function b_bulletin_bigstory_show($options) {
 
 	$block = array();
 //ver3.0 can_read access
-	$gperm =& BulletinGP::getInstance($mydirname) ;
+	$gperm = BulletinGP::getInstance($mydirname) ;
 	$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 	if (empty($can_read_topic_ids)){
 		return false;

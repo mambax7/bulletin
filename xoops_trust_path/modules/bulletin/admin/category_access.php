@@ -2,7 +2,7 @@
 require_once dirname(dirname(__FILE__)).'/include/common_functions.php' ;
 require_once dirname(dirname(__FILE__)).'/include/gtickets.php' ;
 require_once dirname(dirname(__FILE__)).'/class/bulletinTopic.php' ;
-$db =& Database::getInstance() ;
+$db = Database::getInstance() ;
 
 /*
  * topic_access table clean up 2012-2-1 by Yoshis
@@ -123,7 +123,7 @@ $topicselbox = $bt->makeTopicSelBox( false , $topic_id , 'topic_id' );
 
 // create group form
 $group_handler =& xoops_gethandler( 'group' ) ;
-$groups =& $group_handler->getObjects() ;
+$groups = $group_handler->getObjects() ;
 $group_trs = '' ;
 foreach( $groups as $group ) {
 	$gid = $group->getVar('groupid') ;

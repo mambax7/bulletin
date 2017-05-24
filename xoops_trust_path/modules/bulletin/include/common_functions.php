@@ -7,14 +7,14 @@ function bulletin_get_submenu( $mydirname )
 
 	if( ! empty( $submenus_cache[$mydirname] ) ) return $submenus_cache[$mydirname] ;
 
-	$db =& Database::getInstance() ;
-	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
+	$db = Database::getInstance() ;
+	(method_exists('MyTextSanitizer', 'sGetInstance') and $myts = MyTextSanitizer::sGetInstance()) || $myts = MyTextSanitizer::getInstance();
 
 	$categories = array( 0 => array( 'pid' => -1 , 'name' => '' , 'url' => '' , 'sub' => array() ) ) ;
 
 	require_once dirname(dirname(__FILE__)).'/class/bulletingp.php' ;
 //ver3.0 can_read access
-	$gperm =& BulletinGP::getInstance($mydirname) ;
+	$gperm = BulletinGP::getInstance($mydirname) ;
 	$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 	if (empty($can_read_topic_ids)){
 		return array() ;

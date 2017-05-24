@@ -9,7 +9,7 @@ function bulletin_oninstall_base( $module , $mydirname )
 
 	global $ret ;
 
-	$db =& Database::getInstance() ;
+	$db = Database::getInstance() ;
 	$mid = $module->getVar('mid') ;
 
 	// for Cube 2.1

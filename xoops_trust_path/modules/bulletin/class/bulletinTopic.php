@@ -7,10 +7,10 @@ class BulletinTopic extends XoopsTopic{
 
 	function BulletinTopic( $mydirname , $topicid=0 )
 	{
-		$this->db =& Database::getInstance();
+		$this->db = Database::getInstance();
 		$this->mydirname = $mydirname ;
 		$this->table = $this->db->prefix( "{$mydirname}_topics" );
-		(method_exists('MyTextSanitizer', 'sGetInstance') and $this->ts =& MyTextSanitizer::sGetInstance()) || $this->ts =& MyTextSanitizer::getInstance();
+		(method_exists('MyTextSanitizer', 'sGetInstance') and $this->ts = MyTextSanitizer::sGetInstance()) || $this->ts = MyTextSanitizer::getInstance();
 
 		if ( is_array($topicid) ) {
 			$this->makeTopic($topicid);
@@ -74,7 +74,7 @@ class BulletinTopic extends XoopsTopic{
 		$sql .= $this->table ;
 		$sql .= " WHERE topic_pid IN (".implode(',',$topic_ids).")" ;
 		if( $gpermited ){
-			$gperm =& BulletinGP::getInstance($this->mydirname) ;
+			$gperm = BulletinGP::getInstance($this->mydirname) ;
 			$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 			$sql .= " AND topic_id IN (".implode(',',$can_read_topic_ids).")" ;
 		}
@@ -224,7 +224,7 @@ class BulletinTopic extends XoopsTopic{
 //			$uid = intval( $xoopsUser->getVar('uid') ) ;
 //		}
 //		$this->id = "topic_id";
-//		(method_exists('MyTextSanitizer', 'sGetInstance') and $myts =& MyTextSanitizer::sGetInstance()) || $myts =& MyTextSanitizer::getInstance();
+//		(method_exists('MyTextSanitizer', 'sGetInstance') and $myts = MyTextSanitizer::sGetInstance()) || $myts = MyTextSanitizer::getInstance();
 //		$from1 = $this->db->prefix( "groups_users_link" );
 //		$from2 = $this->db->prefix( "bulletin_topic_access" );
 //		$sql = "SELECT ".$this->id." FROM ".$from1." LEFT JOIN ".$from2." ON ".$from1.".groupid = ".$from2.".groupid WHERE ".$from1.".uid = ".$uid." ORDER BY ".$this->id;
@@ -248,7 +248,7 @@ class BulletinTopic extends XoopsTopic{
 			$this->topic_id = $this->db->getInsertId() ;
 			$this->db->query( "UPDATE ".$this->table." SET topic_created=UNIX_TIMESTAMP(),topic_modified=UNIX_TIMESTAMP() WHERE topic_id=".$this->topic_id ) ;
 //ver3.0
-			$gperm =& BulletinGP::getInstance($this->mydirname) ;
+			$gperm = BulletinGP::getInstance($this->mydirname) ;
 			$result = $gperm->insertdefaultpermissions($this->topic_id);
 		} else {
 			$this->db->query( "UPDATE ".$this->table." SET topic_modified=UNIX_TIMESTAMP() WHERE topic_id=".$this->topic_id ) ;

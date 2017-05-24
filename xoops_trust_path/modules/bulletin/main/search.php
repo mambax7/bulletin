@@ -92,7 +92,7 @@ if($action == 'results' ){
 		if ( in_array($mid, $modules_mid) ) {
 			$sql = "SELECT storyid, title, published FROM ".$xoopsDB->prefix( $modules_dir[$mid].'_stories' )." WHERE type > 0 AND published > 0 AND published <= $time AND (expired = 0 OR expired > $time)";
 //ver3.0
-			$gperm =& BulletinGP::getInstance($modules_dir[$mid]) ;
+			$gperm = BulletinGP::getInstance($modules_dir[$mid]) ;
 			$can_read_topic_ids = $gperm->makeOnTopics('can_read');
 			$sql .= " AND topicid IN (".implode(',',$can_read_topic_ids).")";
 
